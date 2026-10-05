@@ -1,0 +1,12 @@
+field,type,required,allowed_or_example,purpose
+timestamp,ISO-8601,yes,2026-07-29T14:30:00Z,traceability
+region,categorical,no,"North, South, East, West, Greenhouse, Unknown",coarse operational context
+soil_type,categorical,no,"Clay, Sandy, Loam, Silt, Peat, Chalk, Unknown",stratified monitoring only
+soil_moisture,categorical,no,"Dry, Normal, Wet, Unknown",stratified monitoring only
+crop_hint,categorical,no,one of 14 PlantVillage crops,optional consistency check
+notes,text,no,no personal data,operator observations
+image_quality_score,float,yes,0.0 to 1.0,quality monitoring
+prediction,text,yes,class label,audit output
+confidence,float,yes,0.0 to 1.0,uncertainty monitoring
+model_version,text,yes,semantic version or checkpoint hash,reproducibility
+

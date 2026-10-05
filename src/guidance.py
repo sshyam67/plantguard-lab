@@ -1,0 +1,78 @@
+"""Crop-growing and condition-management guidance for model predictions."""
+
+CROPS = {
+ "Apple": ("Temperate areas with winter chill and a sunny growing season.", "Deep, fertile, well-drained loam; pH about 6.0-7.0.", "Plant in full sun, provide pollination, water in dry spells, mulch away from the trunk and prune for light and airflow."),
+ "Blueberry": ("Cool to mild climates; many cultivars require winter chilling.", "Acidic, moist but well-drained soil; pH about 4.5-5.5.", "Grow in sun, use acidic mulch, irrigate consistently and plant compatible cultivars for pollination."),
+ "Cherry (including sour)": ("Temperate areas with winter chill and relatively dry ripening weather.", "Fertile, well-drained loam; pH about 6.0-7.0.", "Plant in full sun, avoid waterlogging, prune for an open canopy and protect blossom from frost."),
+ "Corn (maize)": ("Warm, frost-free conditions with full sun.", "Fertile, well-drained loam; pH about 5.8-7.0.", "Sow after soil warms, plant in blocks for pollination, feed to a soil test and maintain moisture during flowering and grain fill."),
+ "Grape": ("Sunny conditions with a long growing season and good airflow.", "Well-drained soil; vines tolerate several types but dislike waterlogging.", "Train on supports, prune annually, avoid excess nitrogen, open the canopy and irrigate during establishment or drought."),
+ "Orange": ("Warm subtropical or tropical areas without severe frost.", "Deep, well-drained, slightly acidic soil; pH about 6.0-7.0.", "Plant in full sun, irrigate deeply without waterlogging, apply citrus feed to local guidance and mulch away from the trunk."),
+ "Peach": ("Temperate climates with winter chill and warm, fairly dry summers.", "Fertile, well-drained sandy loam; pH about 6.0-7.0.", "Plant in full sun, prune to an open centre, thin fruit, water during fruit development and avoid overhead irrigation."),
+ "Pepper, bell": ("Warm, frost-free conditions; use protection in cooler regions.", "Fertile, well-drained soil rich in organic matter; pH about 6.0-6.8.", "Transplant after cold weather, give full sun, water evenly at soil level, feed after fruiting starts and support plants."),
+ "Potato": ("Cool to mild, frost-free growing conditions.", "Loose, well-drained, slightly acidic soil; pH about 5.0-6.5.", "Use certified seed, rotate crops, earth up stems, irrigate consistently during tuber formation and avoid prolonged leaf wetness."),
+ "Raspberry": ("Cool temperate conditions, sheltered from strong wind.", "Moist, fertile, well-drained, slightly acidic soil.", "Grow in sun, support and mulch canes, irrigate at the base, remove old fruiting canes and keep rows open."),
+ "Soybean": ("Warm, frost-free conditions with full sun.", "Fertile, well-drained soil; pH about 6.0-7.0.", "Sow into warm soil, use recommended inoculated seed where appropriate, control weeds early, rotate and protect moisture during pod fill."),
+ "Squash": ("Warm, frost-free conditions with full sun.", "Rich, moisture-retentive but well-drained soil; pH about 6.0-7.0.", "Allow generous spacing, water deeply at the base, mulch, encourage pollinators and avoid wetting foliage late in the day."),
+ "Strawberry": ("Cool to mild conditions; choose a locally suited cultivar.", "Fertile, well-drained, slightly acidic soil; pH about 5.5-6.5.", "Plant in sun with crowns above soil, mulch fruit, use drip irrigation, remove infected leaves and renew beds regularly."),
+ "Tomato": ("Warm, frost-free conditions with full sun; greenhouse growing suits cool regions.", "Fertile, well-drained soil rich in organic matter; pH about 6.0-6.8.", "Transplant after frost, support plants, water evenly at the base, feed after fruit set, mulch, rotate and maintain airflow."),
+}
+
+# Broad planning ranges for a full growing season. These are educational
+# starting points, not prescriptions; P and K are especially soil-test driven.
+NUTRIENTS = {
+ "Apple": ("40-100", "20-60", "60-150", "Apply most nitrogen around spring growth; split potassium where soils are light. Avoid excess nitrogen, which promotes soft growth."),
+ "Blueberry": ("30-60", "10-30", "30-80", "Use acid-forming fertiliser in small split applications from early growth; blueberries are sensitive to over-fertilising and chloride."),
+ "Cherry (including sour)": ("40-90", "20-50", "50-120", "Base mature-tree rates on leaf and soil analysis; apply nitrogen mainly in early spring and avoid late applications."),
+ "Corn (maize)": ("120-220", "40-100", "40-120", "Apply some nitrogen at planting and side-dress the remainder before rapid stem growth; place starter fertiliser away from seed."),
+ "Grape": ("30-80", "20-50", "60-150", "Use petiole/soil tests; apply nitrogen conservatively and split potassium where deficiency or high fruit demand is confirmed."),
+ "Orange": ("100-250", "30-80", "100-250", "Split annual nutrients into 3-4 applications through active growth; keep fertiliser away from the trunk and irrigate after application."),
+ "Peach": ("50-120", "20-60", "60-150", "Apply nitrogen in early spring and adjust using shoot growth and leaf analysis; avoid late nitrogen."),
+ "Pepper, bell": ("100-180", "40-90", "120-250", "Split nitrogen and potassium between establishment and fruiting; avoid excessive nitrogen after flowering."),
+ "Potato": ("120-200", "60-140", "150-300", "Incorporate phosphorus and much of the potassium before planting; split nitrogen and avoid late excess that delays tuber maturity."),
+ "Raspberry": ("40-80", "20-50", "50-120", "Apply nitrogen in spring, preferably in split doses; use soil/leaf analysis for phosphorus and potassium."),
+ "Soybean": ("0-30", "30-80", "40-120", "Correctly inoculated soybean usually fixes its own nitrogen, so routine high nitrogen is not recommended; base phosphorus and potassium on soil tests."),
+ "Squash": ("80-150", "40-90", "100-200", "Incorporate part before planting, then side-dress nitrogen and potassium as vines develop and flowering begins."),
+ "Strawberry": ("60-120", "30-70", "80-180", "Split nutrients between establishment and fruiting; excess nitrogen produces soft growth and may worsen disease."),
+ "Tomato": ("120-200", "40-100", "150-300", "Use moderate nitrogen before flowering, then split nitrogen and potassium through fruit development; excess nitrogen reduces fruiting."),
+}
+
+DISEASES = {
+ "Apple scab": ("Fungal disease causing olive-to-dark leaf spots and fruit blemishes.", "Remove fallen leaves and badly infected material; prune for airflow and avoid overhead watering.", "Where approved, a labelled apple-scab preventative such as sulphur or captan may help; correct timing is essential.", "Use resistant cultivars, clear leaf litter and follow local scab forecasts."),
+ "Cedar apple rust": ("Fungal rust alternating between apple and juniper hosts, producing yellow-orange spots.", "Remove nearby juniper galls where practical and collect badly affected material.", "A locally approved preventative rust fungicide may be used at its labelled timings.", "Choose resistant cultivars and separate apples from infected junipers where possible."),
+ "Powdery mildew": ("Fungal disease producing white powdery growth on leaves and shoots.", "Remove heavily affected leaves and improve light, spacing and airflow.", "Where approved, horticultural oil, potassium bicarbonate or sulphur may help; follow the label and compatibility warnings.", "Avoid excess nitrogen, provide spacing and inspect young growth."),
+ "Cercospora leaf spot / Gray leaf spot": ("Fungal maize disease causing elongated grey or tan lesions.", "Rotate away from maize and manage infected residue according to local practice.", "A labelled foliar fungicide may be justified under high pressure; ask a local agronomist.", "Use resistant hybrids, crop rotation and appropriate plant spacing."),
+ "Common rust": ("Fungal maize disease producing cinnamon-brown pustules.", "Monitor spread and remove volunteer maize; mild late infection may need no treatment.", "Use a crop-labelled fungicide only when early disease and local thresholds justify it.", "Plant resistant hybrids at locally recommended dates."),
+ "Northern leaf blight": ("Fungal maize disease causing long, cigar-shaped lesions.", "Rotate crops and manage infected maize residue.", "A labelled foliar fungicide may help when early infection threatens a susceptible crop.", "Use resistant hybrids, rotate crops and reduce infected surface residue."),
+ "Esca (Black Measles)": ("Grapevine trunk-disease complex causing striped leaves, fruit spots and wood decay.", "Mark affected vines, remove dead wood in dry weather and dispose of it locally.", "There is no dependable curative spray; seek professional vineyard advice and protect pruning wounds.", "Use clean stock, protect wounds and disinfect tools between suspect vines."),
+ "Leaf blight (Isariopsis Leaf Spot)": ("Fungal grape disease causing angular lesions and early leaf drop.", "Remove infected leaves and improve canopy ventilation.", "Use only a locally approved grape product labelled for this leaf spot.", "Prune for airflow, clear debris and avoid prolonged leaf wetness."),
+ "Huanglongbing (Citrus greening)": ("Serious bacterial citrus disease spread mainly by psyllids; it can resemble nutrient problems.", "Do not move the plant. Isolate it and contact your plant-health authority for confirmation.", "There is no cure; official advice may require tree removal plus approved psyllid control.", "Buy certified trees, monitor psyllids and follow quarantine rules."),
+ "Bacterial spot": ("Bacterial disease causing small dark lesions on leaves and sometimes fruit.", "Remove badly infected material, avoid handling wet plants and stop overhead irrigation.", "Copper products may suppress spread where crop-labelled, but resistance is common; seek local advice.", "Use certified seed or plants, rotate, sanitise tools and keep foliage dry."),
+ "Early blight": ("Fungal disease usually starting on older leaves with brown target-like rings.", "Remove infected lower leaves, mulch against soil splash and improve airflow.", "Use a locally approved crop product labelled for early blight if spread continues.", "Rotate nightshade crops, remove volunteers and water at soil level."),
+ "Late blight": ("Fast-moving water-mould disease that can destroy potato or tomato crops in cool wet weather.", "Isolate affected plants, remove infected material without composting and inspect neighbours immediately.", "Seek urgent local advice; use only labelled late-blight products timed to local forecasts.", "Use resistant cultivars or certified seed, destroy volunteers and follow blight alerts."),
+ "Leaf Mold": ("Fungal tomato disease favoured by humidity, with yellow patches and olive growth beneath leaves.", "Remove affected leaves, ventilate the growing area and reduce humidity.", "A tomato-labelled fungicide may help if cultural control is insufficient.", "Space plants, ventilate, water at the base and use resistant cultivars."),
+ "Septoria leaf spot": ("Fungal tomato disease forming many small circular spots, often on lower leaves.", "Remove lower affected leaves, mulch against splash and avoid overhead watering.", "Use a locally approved tomato fungicide if necessary.", "Rotate crops, remove debris, stake plants and improve airflow."),
+ "Spider mites / Two-spotted spider mite": ("Sap-feeding mites causing pale stippling, bronzing and fine webbing.", "Isolate the plant, wash leaf undersides and remove heavily infested foliage.", "Insecticidal soap, horticultural oil or an approved miticide may help; protect beneficial mites.", "Reduce plant stress, inspect leaf undersides and avoid unnecessary broad-spectrum insecticides."),
+ "Target Spot": ("Fungal tomato disease causing expanding target-like lesions.", "Remove affected leaves and debris, reduce humidity and improve airflow.", "Use an approved tomato fungicide when justified and rotate actives as the label directs.", "Rotate crops, stake plants and avoid overhead watering."),
+ "Tomato Yellow Leaf Curl Virus": ("Whitefly-spread viral disease causing curled yellow leaves and stunting.", "Isolate and remove infected plants; inspect nearby plants and control host weeds.", "No product cures the virus. Manage whiteflies with exclusion, biological control or approved products.", "Use resistant cultivars and clean transplants and exclude whiteflies."),
+ "Tomato mosaic virus": ("Contagious virus causing mottling, distortion and reduced growth.", "Isolate and remove suspect plants; wash hands and disinfect tools and supports.", "There is no curative pesticide; use sanitation and removal.", "Use certified seed and resistant cultivars and disinfect equipment."),
+ "Leaf scorch": ("Strawberry fungal disease causing purple spots that can merge into scorched areas.", "Remove infected leaves, improve airflow and avoid overhead irrigation.", "Use a locally approved strawberry fungicide where recommended.", "Use clean plants, renovate beds and remove infected debris."),
+}
+
+GENERIC = ("The image resembles this condition, but a photograph alone cannot confirm the cause.", "Isolate the plant, remove badly affected material, keep leaves dry and monitor new growth.", "Do not apply pesticide from this prediction alone; confirm it and use only locally labelled products.", "Use clean planting material, rotate crops where relevant, sanitise tools and maintain airflow.")
+
+def guidance_for(label):
+    if "___" not in label:
+        return {"available": False}
+    raw_crop, raw_condition = label.split("___", 1)
+    crop = raw_crop.replace("_", " ")
+    condition = raw_condition.replace("_", " ").strip()
+    condition = {"Haunglongbing (Citrus greening)":"Huanglongbing (Citrus greening)", "Cercospora leaf spot Gray leaf spot":"Cercospora leaf spot / Gray leaf spot", "Spider mites Two-spotted spider mite":"Spider mites / Two-spotted spider mite"}.get(condition, condition)
+    climate, soil, growing = CROPS.get(crop, ("Use a locally suitable climate and cultivar.", "Use fertile, well-drained soil suited to the crop.", "Provide suitable light, irrigation, nutrition, spacing and hygiene."))
+    n, p, k, nutrient_timing = NUTRIENTS.get(crop, ("Soil-test based", "Soil-test based", "Soil-test based", "Use a laboratory soil test and local crop recommendation."))
+    healthy = condition.lower() == "healthy"
+    if healthy:
+        details = ("The leaf resembles healthy training examples; this does not prove the whole plant is disease-free.", "No disease treatment is suggested. Continue routine care and inspect new growth.", "Use fertiliser only according to a soil test or crop guidance; avoid pesticide without a confirmed need.", "Use clean tools and stock, maintain airflow, water correctly and remove unhealthy debris.")
+    else:
+        details = DISEASES.get(condition, GENERIC)
+    meaning, action, product, prevention = details
+    return {"available": True, "crop": crop, "condition": condition, "healthy": healthy, "meaning": meaning, "where_it_grows": climate, "soil": soil, "how_to_grow": growing, "nutrients": {"nitrogen": n, "phosphorus": p, "potassium": k, "unit": "kg/ha per growing season", "timing": nutrient_timing, "note": "Indicative planning range only. Obtain a soil test and follow local crop guidance before applying fertiliser. Rates refer to nutrient amounts (N, P2O5 and K2O), not the weight of a fertiliser bag."}, "immediate_action": action, "what_to_use": product, "prevention": prevention, "safety": "General guidance only. Confirm with a local agronomist or plant-health service. Follow product labels and local law; protect people, animals, waterways and pollinators."}

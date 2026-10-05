@@ -1,0 +1,44 @@
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+*.py[cod]
+
+# Local data and model state
+data/raw/
+data/processed/
+artifacts/*.pt
+artifacts/torch-cache/
+instance/
+uploads/
+
+# Logs and local runtime files
+*.log
+.env
+.env.*
+!.env.example
+
+# Generated academic and presentation material
+*.docx
+*.pptx
+*.inspect.ndjson
+deliverables/
+qa_report/
+tmp/
+.codex-ppt-build/
+proposal.zip
+proposal_unpacked/
+
+# Local-only document builders
+tools/build_report.py
+scripts/assemble_final_dissertation.py
+scripts/build_path_a_report.py
+scripts/build_presentation_pack_docs.py
+scripts/finalise_report_and_ethics.py
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
